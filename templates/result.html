@@ -1,11 +1,77 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Quiz Result</title>
+    <title>Generated Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            color: #333;
+        }
+        .question {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+        .question p {
+            margin: 0;
+        }
+        .answer {
+            font-weight: bold;
+            color: green;
+            display: none; /* Hidden by default */
+        }
+        button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+        function toggleAnswer(id) {
+            const answerElement = document.getElementById(id);
+            if (answerElement.style.display === "none") {
+                answerElement.style.display = "block";
+            } else {
+                answerElement.style.display = "none";
+            }
+        }
+    </script>
 </head>
 <body>
     <h1>Generated Quiz</h1>
-    <p>{{ question }}</p>
+    {% for question in questions %}
+        <div class="question">
+            <p><b>Question:</b> {{ question.question }}</p>
+            <p id="answer-{{ loop.index }}" class="answer"><b>Answer:</b> {{ question.answer }}</p>
+            <button onclick="toggleAnswer('answer-{{ loop.index }}')">Reveal Answer</button>
+        </div>
+    {% endfor %}
     <a href="/">Go Back</a>
 </body>
 </html>

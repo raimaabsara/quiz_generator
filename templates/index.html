@@ -2,11 +2,46 @@
 <html>
 <head>
     <title>Quiz Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            color: #333;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        input[type="number"] {
+            width: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <h1>Enter Text to Generate a Quiz</h1>
-    <form action="/generate" method="post">
-        <textarea name="text" rows="10" cols="50" placeholder="Paste your text here"></textarea><br>
+    <h1>Quiz Generator</h1>
+    <form method="POST" action="/generate">
+        <textarea name="text" placeholder="Enter your text here..."></textarea>
+        <br>
+        <label for="num_questions">Number of Questions (1-5):</label>
+        <input type="number" name="num_questions" min="1" max="5" value="1">
+        <br><br>
         <button type="submit">Generate Quiz</button>
     </form>
 </body>
